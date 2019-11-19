@@ -16,6 +16,6 @@ public class Projetil extends Ranged {
 
 	public String toString(String tipoProj) {
 		return super.toString() + "Tipo de projetil: "+ this.getTipoProj();
-	}
+		}
 
 }
