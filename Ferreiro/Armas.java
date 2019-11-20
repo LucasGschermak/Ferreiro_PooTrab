@@ -11,7 +11,7 @@ public class Armas implements Serializable {
 		this.hands=hands;
 		this.grupoArma=gArma;
 	}
-
+	public Armas() {}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -37,7 +37,7 @@ public class Armas implements Serializable {
 			      "Categoria: " + this.getGrupoArma() +  
 				  "**********************************\n" +
 				  "Nome: " + this.getNome() +  "\n" +
-				  "Arma One Handed(1) ou Two Handed(2): " + this.getHands() + "Mão(s)\n";
+				  "Arma One Handed(1) ou Two Handed(2): " + this.getHands() + " Mão(s)\n";
 		
 		return geral;
 	}

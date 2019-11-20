@@ -1,9 +1,11 @@
 public class Corda extends Ranged {
 
 	private String matC;
-
-	public Corda(String nome, String hands, String matC) {
+	
+	public Corda(String nome, String hands) {
 		super(nome,hands);
+	}
+	public Corda(String matC) {
 		this.matC = matC;
 	}
 	public String getMatC() {

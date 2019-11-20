@@ -11,9 +11,7 @@ public class Lamina extends Melee {
 		this.tamanhoL = tamL;
 		this.matL = matL;
 		this.tipoL = tipoL;
-		
 	}
-
 	public String getMatL() {
 		return matL;
 	}

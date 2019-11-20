@@ -8,7 +8,6 @@ public class Estilo extends Ranged {
 		super(nome,hands);
 		this.matE = matE;
 		this.tamanhoE = tamE;
-
 	}
 	public String getMatE() {
 		return matE;
