@@ -1,9 +1,7 @@
 public class Lamina extends Melee {
 
 	private String tamanhoL;
-
 	private String matL;
-
 	private String tipoL;
 
 	public Lamina(String nome, String hands, String tamL, String matL, String tipoL) {
@@ -37,8 +35,8 @@ public class Lamina extends Melee {
 	}
 
 	public String toString() {
-		return super.toString() + "Material da lamina: "+ this.getMatL()
-								+ "Tamanho da lamina: "+ this.getTamL()
+		return super.toString() + "Material da lamina: "+ this.getMatL()+"\n"
+								+ "Tamanho da lamina: "+ this.getTamL()+"\n"
 								+ "Tipo da lamina: "+ this.getTipoL();
 	}
 

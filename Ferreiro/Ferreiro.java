@@ -20,16 +20,18 @@ public class Ferreiro {
 		return dadosOut;
 	}
 	public Lamina leLamina() {
-		String [] valores = new String [5];
-		String [] nomeVal = {"Nome","Arma One Handed(1) ou Two Handed(2):",
-				"Tamanho do(a) "+valores[0],"Material do(a) "+valores[0],
-				"Tipo da Lamina"};
+		String [] valores = new String [2];
+		String [] nomeVal = {"Nome","Arma One Handed(1) ou Two Handed(2):"};
 		valores = leValores(nomeVal);
+		String [] valores2 = new String [3];
+		String [] nomeVal2 = {"Tamanho do(a) "+valores[0],"Material do(a) "+valores[0],
+		"Tipo da Lamina"};
+		valores2 = leValores(nomeVal2);
 
 		Lamina laminaArma = new Lamina(valores[0],valores[1],
-								valores[2],valores[3],valores[4]);
+				valores2[0],valores2[1],valores2[2]);
 		return laminaArma;
-		
+
 	}
 	public Empunhadura leEmpunhadura() {
 		String [] valores = new String [1];
@@ -40,12 +42,14 @@ public class Ferreiro {
 		return empArma;
 	}
 	public Estilo leEstilo() {
-		String [] valores = new String [4];
-		String [] nomeVal = {"Nome","Arma One Handed(1) ou Two Handed(2):",
-				"Material do(a) "+ valores[0],"Tamanho do(a) "+ valores[0]};
+		String [] valores = new String [2];
+		String [] nomeVal = {"Nome","Arma One Handed(1) ou Two Handed(2):"};
 		valores = leValores(nomeVal);
+		String [] valores2 = new String [2];
+		String [] nomeVal2 = {"Material do(a) "+valores[0],"Tamanho do(a) "+valores[0] };
+		valores2 = leValores(nomeVal2);
 
-		Estilo estArma = new Estilo(valores[0],valores[1],valores[2],valores[3]);
+		Estilo estArma = new Estilo(valores[0],valores[1],valores2[0],valores2[1]);
 		return estArma;
 	}
 	public Corda leCorda() {
@@ -66,7 +70,7 @@ public class Ferreiro {
 	}
 
 	public void menuLoja() {
-		ArrayList<Armas> arma = new ArrayList<Armas>();
+		arma = new ArrayList<Armas>();
 
 		String menu = "";
 		String entrada;
@@ -78,7 +82,7 @@ public class Ferreiro {
 					"Opções:\n" + 
 					"1. Entrar com a Arma\n" +
 					"2. Exibir Arma\n" +
-					"3. Destruir Arma\n" +
+					"3. Descartar Arma\n" +
 					"4. Salvar Arma\n" +
 					"5. Recuperar Arma\n" +
 					"9. Sair";
@@ -92,12 +96,11 @@ public class Ferreiro {
 
 			switch (opc1) {
 			case 1:// Entrar dados
-				menu = "Entrada de Produto\n" +
+				menu = "Entrada de Arma\n" +
 						"Opções:\n" + 
 						"1. Melee\n" +
 						"2. Ranged\n";
-						
-
+				
 				entrada = JOptionPane.showInputDialog (menu + "\n\n");
 				while (!menuNumValido(entrada)) {
 					entrada = JOptionPane.showInputDialog(null, menu + 
@@ -112,7 +115,7 @@ public class Ferreiro {
 				break;
 				default: 
 					JOptionPane.showMessageDialog(null,"Arma para entrada NÃO escolhida!");
-				break;
+					break;
 				}
 				if (opcEscolhida == 1) {
 					arma.add((Armas)leLamina());
@@ -122,7 +125,6 @@ public class Ferreiro {
 					arma.add((Armas)leCorda());
 					arma.add((Armas)leProjetil());
 				}
-			
 
 			case 2: // Exibir dados
 				if (arma.size() == 0) {
@@ -141,7 +143,7 @@ public class Ferreiro {
 					break;
 				}
 				arma.clear();
-				JOptionPane.showMessageDialog(null,"Dados LIMPOS com sucesso!");
+				JOptionPane.showMessageDialog(null,"Armas DESCARTADAS com sucesso!");
 				break;
 			case 4: // Grava Dados
 				if (arma.size() == 0) {
@@ -149,15 +151,15 @@ public class Ferreiro {
 					break;
 				}
 				salvaArmas(arma);
-				JOptionPane.showMessageDialog(null,"Dados SALVOS com sucesso!");
+				JOptionPane.showMessageDialog(null,"Armas SALVAS com sucesso!");
 				break;
 			case 5: // Recupera Dados
 				arma = recuperarArmas();
 				if (arma.size() == 0) {
-					JOptionPane.showMessageDialog(null,"Sem dados para apresentar.");
+					JOptionPane.showMessageDialog(null,"Sem Armas para apresentar.");
 					break;
 				}
-				JOptionPane.showMessageDialog(null,"Dados RECUPERADOS com sucesso!");
+				JOptionPane.showMessageDialog(null,"Armas RECUPERADAS com sucesso!");
 				break;
 			case 9:
 				JOptionPane.showMessageDialog(null,"Fim do aplicativo Ferreiro");
@@ -169,7 +171,6 @@ public class Ferreiro {
 	public void mostrarArmas(String dados) {
 		JOptionPane.showMessageDialog(null,"Armas\n--------\n" + dados);
 	}
-
 	public void salvaArmas(ArrayList<Armas> arma) {
 		ObjectOutputStream outputStream = null;
 		try {
@@ -192,10 +193,8 @@ public class Ferreiro {
 			}
 		}
 	}
-
 	@SuppressWarnings("finally")
 	public ArrayList<Armas> recuperarArmas() {
-		ArrayList<Armas> arma = new ArrayList<Armas>();
 		ObjectInputStream inputStream = null;
 		try {
 			inputStream = new ObjectInputStream (new FileInputStream("c:\\temp\\arma.wpn"));
@@ -205,42 +204,37 @@ public class Ferreiro {
 					arma.add((Armas)obj);
 				}
 			}
-		} catch (EOFException ex) {
-			System.out.println("End of file reached - Cabou...");
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
+		} catch (EOFException e) {
+			JOptionPane.showMessageDialog(null,"Leitura do documento finalizado.\n\n");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}finally {
 			try {
 				if (inputStream != null) {
 					inputStream.close();
 				}
-			} catch (final IOException ex) {
-				ex.printStackTrace();
+			} catch (final IOException e) {
+				e.printStackTrace();
 			}
 			return arma;
 		}
 	}
-
-
-
 	public boolean menuNumValido(String x) {
-		 boolean resultado;
-	        try {
-	            Integer.parseInt(x);
-	            resultado = true;
-	        } catch (NumberFormatException e) {
-	            resultado = false;
-	        }
-	        return resultado;
+		boolean resultado;
+		try {
+			Integer.parseInt(x);
+			resultado = true;
+		} catch (NumberFormatException e) {
+			resultado = false;
+		}
+		return resultado;
 	}
-
 	public static void main(String[] args) {
 		Ferreiro f = new Ferreiro();
 		f.menuLoja();
 	}
-
 }

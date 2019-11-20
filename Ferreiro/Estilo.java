@@ -1,7 +1,6 @@
 public class Estilo extends Ranged {
 
 	private String matE;
-
 	private String tamanhoE;
 
 	public Estilo(String nome, String hands, String tamE, String matE) {
@@ -22,8 +21,8 @@ public class Estilo extends Ranged {
 		this.tamanhoE = tamE;
 	}
 	public String toString() {
-		return super.toString() + "Material do "+this.getNome()+": "+ this.getMatE()
-								+ "Tamanho do "+this.getNome()+": "+ this.getTamanhoE();
+		return super.toString() + "Material do "+this.getNome()+": "+ this.getMatE()+"\n"
+				+ "Tamanho do "+this.getNome()+": "+ this.getTamanhoE();
 	}
 
 }

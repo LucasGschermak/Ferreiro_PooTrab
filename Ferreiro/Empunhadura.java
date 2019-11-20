@@ -15,7 +15,7 @@ public class Empunhadura extends Melee {
 		this.matEmp = matEmp;
 	}
 	public String toString() {
-		return super.toString()+"Material da Empunhadura: "+ this.getMatEmp();
+		return "Material da Empunhadura: "+ this.getMatEmp()+"\n";
 	}
 
 }

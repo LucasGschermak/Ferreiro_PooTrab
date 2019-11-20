@@ -15,7 +15,7 @@ public class Corda extends Ranged {
 		this.matC = matC;
 	}
 	public String toString() {
-		return super.toString()+"Material da Corda: "+ this.getMatC();
+		return "Material da Corda: "+ this.getMatC();
 	}
 
 }
