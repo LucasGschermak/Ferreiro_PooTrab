@@ -74,7 +74,6 @@ public class Ferreiro {
 
 		String menu = "";
 		String entrada;
-		int opcEscolhida = 0;
 		int opc1, opc2;
 
 		do {
@@ -109,23 +108,19 @@ public class Ferreiro {
 				opc2 = new Integer(entrada);
 
 				switch (opc2){
-				case 1: opcEscolhida = 1;
+				case 1:
+				arma.add((Armas)leLamina());
+				arma.add((Armas)leEmpunhadura());
 				break;
-				case 2: opcEscolhida = 2;
+				case 2:
+				arma.add((Armas)leEstilo());
+				arma.add((Armas)leCorda());
+				arma.add((Armas)leProjetil());
 				break;
 				default: 
 					JOptionPane.showMessageDialog(null,"Arma para entrada NÃO escolhida!");
 					break;
 				}
-				if (opcEscolhida == 1) {
-					arma.add((Armas)leLamina());
-					arma.add((Armas)leEmpunhadura());
-				}else if(opcEscolhida == 2) {
-					arma.add((Armas)leEstilo());
-					arma.add((Armas)leCorda());
-					arma.add((Armas)leProjetil());
-				}
-
 			case 2: // Exibir dados
 				if (arma.size() == 0) {
 					JOptionPane.showMessageDialog(null,"Entre com a Arma primeiramente");
